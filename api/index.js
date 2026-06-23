@@ -80,7 +80,12 @@ function authMiddleware(req, res, next) {
   }
 }
 
-app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || 'https://kalia-brother-client.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(express.json({ limit: '50mb' }));
 
 app.get('/api', (req, res) => {
